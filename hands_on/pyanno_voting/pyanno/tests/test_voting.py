@@ -1,4 +1,5 @@
 import numpy as np
+from numpy.testing import assert_almost_equal
 
 from pyanno import voting
 from pyanno.voting import MISSING_VALUE as MV
