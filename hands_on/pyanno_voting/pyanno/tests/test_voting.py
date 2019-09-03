@@ -31,7 +31,7 @@ def test_majority_vote_empty_item():
 
 
 def test_labels_count():
-    #Given
+    # Given
     annotations = [
         [1,  2, MV, MV],
         [MV, MV,  3,  3],
@@ -40,11 +40,22 @@ def test_labels_count():
     ]
     nclasses = 5
     expected = [0, 3, 1, 3, 0]
+
+    # When
     result = voting.labels_count(annotations, nclasses)
+    
+    # Then
     assert result == expected
 
 def test_labels_frequency():
-    result = voting.labels_frequency([[1, 1, 2], [MV, 1, 2]], 4)
+    # Given
+    annotations = [[1, 1, 2], [MV, 1, 2]]
+    nclasses = 4 
     expected = np.array([ 0. ,  0.6,  0.4,  0. ])
+
+    # When 
+    result = voting.labels_frequency(annotations, nclasses)
+    
+    # Then
     np.testing.assert_array_equal(result, expected)
 
