@@ -4,19 +4,6 @@ from pyanno import voting
 from pyanno.voting import MISSING_VALUE as MV
 
 
-def test_labels_count():
-    annotations = [
-        [1,  2, MV, MV],
-        [MV, MV,  3,  3],
-        [MV,  1,  3,  1],
-        [MV, MV, MV, MV],
-    ]
-    nclasses = 5
-    expected = [0, 3, 1, 3, 0]
-    result = voting.labels_count(annotations, nclasses)
-    assert result == expected
-
-
 def test_majority_vote():
     annotations = [
         [1, 2, 2, MV],
@@ -42,6 +29,19 @@ def test_majority_vote_empty_item():
     result = voting.majority_vote(annotations)
     assert result == expected
 
+
+def test_labels_count():
+    #Given
+    annotations = [
+        [1,  2, MV, MV],
+        [MV, MV,  3,  3],
+        [MV,  1,  3,  1],
+        [MV, MV, MV, MV],
+    ]
+    nclasses = 5
+    expected = [0, 3, 1, 3, 0]
+    result = voting.labels_count(annotations, nclasses)
+    assert result == expected
 
 def test_labels_frequency():
     result = voting.labels_frequency([[1, 1, 2], [MV, 1, 2]], 4)
